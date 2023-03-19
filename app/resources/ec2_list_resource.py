@@ -18,7 +18,14 @@ class Ec2ListResource(Resource):
                 instance_id = data["InstanceId"]
                 instance_type = data["InstanceType"]
                 instance_status = data["State"]["Name"]
-                message = {"instance_id": instance_id, "instance_type": instance_type, "instance_state": instance_status}
-                ec2_list.append(message)
+                if "Tags" in data:
+                    tag_extract = data["Tags"]
+                    tag_name = tag_extract[0]
+                    tag_name_extract = tag_name.get("Value")
+                else:
+                    tag_name_extract = "Instance not Named"               
+                info_instances = {"Instance_name": tag_name_extract, "instance_id": instance_id, "instance_type": instance_type, "instance_state": instance_status}
+                ec2_list.append(info_instances)
+                message = {"ec2_instances": ec2_list}
 
-        return ec2_list
+        return message
