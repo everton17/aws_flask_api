@@ -1,15 +1,25 @@
 from flask_restful import Resource
+from flask_restful import reqparse
+import botocore
 import boto3
 
-
+profile = "tf"
 
 class Ec2ListResource(Resource):
+    parser = reqparse.RequestParser()
+    parser.add_argument('region', type=str, required=True, help='aws region is a required paramether, please send desired region as header')
+
     def get(self):
-        region = 'us-east-1'
-        session = boto3.Session(profile_name='hashicorp', region_name=region)
+        data_paramether = Ec2ListResource.parser.parse_args()
+        region = data_paramether['region']
+        session = boto3.Session(profile_name=profile, region_name=region)
         ec2 = session.client('ec2')
-        check_ec2 = ec2.describe_instances()['Reservations']
         ec2_list = []
+        try:
+            check_ec2 = ec2.describe_instances()['Reservations']
+        except botocore.exceptions.EndpointConnectionError:
+            message = {"error": "Endpoint Connection Error, check if you send a valid aws region as json format on your body request"}
+            return message
         if not len(check_ec2) > 0:
             message = {"message": f"Dont exists EC2 Intances on {region} region"}
             return message
