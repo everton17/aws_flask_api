@@ -10,8 +10,8 @@ class Ec2ListResource(Resource):
     parser.add_argument('region', type=str, required=True, help='aws region is a required paramether, please send desired region as header')
 
     def get(self):
-        data_paramether = Ec2ListResource.parser.parse_args()
-        region = data_paramether['region']
+        data_region = Ec2ListResource.parser.parse_args().get('region')
+        region = data_region
         session = boto3.Session(profile_name=profile, region_name=region)
         ec2 = session.client('ec2')
         ec2_list = []
