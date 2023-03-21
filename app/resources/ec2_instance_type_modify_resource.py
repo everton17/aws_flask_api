@@ -1,8 +1,6 @@
 from flask_restful import Resource
 from flask_restful import reqparse
-from models.ec2_instance_type_modify_models import ec2_instance_type_modify
-
-profile = "tf"
+from app.models.ec2_instance_type_modify_models import ec2_instance_type_modify
 
 class Ec2InstanceTypeResource(Resource):
     parser = reqparse.RequestParser()
