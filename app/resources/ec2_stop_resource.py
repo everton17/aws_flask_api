@@ -1,8 +1,6 @@
 from flask_restful import Resource
 from flask_restful import reqparse
-from models.ec2_stop_model import ec2_stop
-
-profile = "tf"
+from app.models.ec2_stop_model import ec2_stop
 
 class Ec2StopResource(Resource):
     parser = reqparse.RequestParser()

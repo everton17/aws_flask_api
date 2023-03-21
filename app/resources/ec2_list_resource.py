@@ -1,8 +1,6 @@
 from flask_restful import Resource
 from flask_restful import reqparse
-from models.ec2_list_models import ec2_list
-
-profile = "tf"
+from app.models.ec2_list_models import ec2_list
 
 class Ec2ListResource(Resource):
     parser = reqparse.RequestParser()

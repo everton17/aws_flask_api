@@ -1,8 +1,6 @@
 from flask_restful import Resource
 from flask_restful import reqparse
-from models.ec2_start_model import ec2_start
-
-profile = "tf"
+from app.models.ec2_start_model import ec2_start
 
 class Ec2StartResource(Resource):
     parser = reqparse.RequestParser()
