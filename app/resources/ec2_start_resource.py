@@ -10,7 +10,7 @@ class Ec2StartResource(Resource):
     parser.add_argument('region', type=str, required=True, help='aws region is a required paramether, please send desired region as header')
     parser.add_argument('instance_id', type=str, required=True, help='instance_id is a required paramether, please send desired instance_id as header')
     
-    def get(self):
+    def post(self):
         data_region = Ec2StartResource.parser.parse_args().get('region')
         data_instance_id = Ec2StartResource.parser.parse_args().get('instance_id')
         region = data_region
