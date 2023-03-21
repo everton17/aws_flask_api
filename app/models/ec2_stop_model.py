@@ -1,10 +1,8 @@
 import botocore
 import boto3
 
-profile= "tf"
-
 def ec2_stop(region, instance_id):
-    session = boto3.Session(profile_name=profile, region_name=region)
+    session = boto3.Session(region_name=region)
     ec2 = session.client('ec2')
 
     try:
