@@ -24,7 +24,7 @@ jobs:
       - name: Terraform Init
         run: |
           echo "***Running Terraform Init***"
-          terraform init
+          terraform init -backend-config="bucket=${{ secrets.RS_BUCKET_NAME }}" -backend-config="region=${{ secrets.RS_REGION }}" -backend-config="key=${{ secrets.RS_KEY_PATH_FILE }}"
         working-directory: ./terraform   
 
       - name: Terraform Validate

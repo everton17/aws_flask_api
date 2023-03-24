@@ -9,11 +9,7 @@ terraform {
     }
   }
 
-  backend "s3" {
-    bucket = ""
-    key    = ""
-    region = ""
-  }
+  backend "s3" {}
 }
 
 # Configure the AWS Provider
