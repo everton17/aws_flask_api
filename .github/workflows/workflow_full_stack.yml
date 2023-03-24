@@ -30,11 +30,11 @@ jobs:
       - name: Terraform Validate
         run: |
           echo "***Running Terraform Validate***"
-          terraform validade
+          terraform validate
         working-directory: ./terraform 
 
       - name: Terraform Plan
         run: |
           echo "***Running Terraform Plan***"
-          terraform init
+          terraform plan
         working-directory: ./terraform   
