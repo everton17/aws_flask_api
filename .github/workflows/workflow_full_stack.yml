@@ -37,4 +37,10 @@ jobs:
         run: |
           echo "***Running Terraform Plan***"
           terraform plan
+        working-directory: ./terraform
+
+      - name: Terraform Plan
+        run: |
+          echo "***Running Terraform Apply***"
+          terraform apply -auto-approve
         working-directory: ./terraform   
