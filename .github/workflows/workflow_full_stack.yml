@@ -23,13 +23,16 @@ jobs:
         run: |
           echo "***Running Terraform Init***"
           terraform init
+        working-directory: ./terraform   
 
       - name: Terraform Validate
         run: |
           echo "***Running Terraform Validate***"
           terraform validade
+        working-directory: ./terraform 
 
       - name: Terraform Plan
         run: |
           echo "***Running Terraform Plan***"
           terraform init
+        working-directory: ./terraform   
