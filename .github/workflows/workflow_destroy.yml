@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  terraform_deploy:
+  terraform_destroy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -36,5 +36,5 @@ jobs:
       - name: Terraform Destroy
         run: |
           echo "***Running Terraform Destroy***"
-          terraform destroy -auto-aprove
+          terraform destroy -auto-approve
         working-directory: ./terraform
