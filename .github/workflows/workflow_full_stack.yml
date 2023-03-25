@@ -46,6 +46,7 @@ jobs:
         working-directory: ./terraform
         
   build_app:
+    needs: terraform_deploy
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
