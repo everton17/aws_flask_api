@@ -39,7 +39,7 @@ jobs:
           terraform plan
         working-directory: ./terraform
 
-      - name: Terraform Plan
+      - name: Terraform Apply
         run: |
           echo "***Running Terraform Apply***"
           terraform apply -auto-approve
