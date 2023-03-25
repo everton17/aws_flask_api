@@ -70,7 +70,7 @@ jobs:
         working-directory: ./terraform 
       
       - name: Terraform Output
-        run: terraform output
+        run: terraform output ecr_repo_url
         working-directory: ./terraform
       
       
