@@ -4,49 +4,49 @@ on:
   workflow_dispatch:
 
 jobs:
-  terraform_deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v2
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_CI_CD }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY_CI_CD }}
-          aws-region: ${{ secrets.RS_REGION }}
-
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v2
-        with:
-          terraform_version: 1.3.5
-
-      - name: Terraform Init
-        run: |
-          echo "***Running Terraform Init***"
-          terraform init -backend-config="bucket=${{ secrets.RS_BUCKET_NAME }}" -backend-config="region=${{ secrets.RS_REGION }}" -backend-config="key=${{ secrets.RS_KEY_PATH_FILE }}"
-        working-directory: ./terraform   
-
-      - name: Terraform Validate
-        run: |
-          echo "***Running Terraform Validate***"
-          terraform validate
-        working-directory: ./terraform 
-
-      - name: Terraform Plan
-        run: |
-          echo "***Running Terraform Plan***"
-          terraform plan
-        working-directory: ./terraform
-
-      - name: Terraform Apply
-        run: |
-          echo "***Running Terraform Apply***"
-          terraform apply -auto-approve
-        working-directory: ./terraform
+#  terraform_deploy:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v3
+#
+#      - name: Configure AWS Credentials
+#        uses: aws-actions/configure-aws-credentials@v2
+#        with:
+#          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_CI_CD }}
+#          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY_CI_CD }}
+#          aws-region: ${{ secrets.RS_REGION }}
+#
+#      - name: Setup Terraform
+#        uses: hashicorp/setup-terraform@v2
+#        with:
+#          terraform_version: 1.3.5
+#
+#      - name: Terraform Init
+#        run: |
+#          echo "***Running Terraform Init***"
+#          terraform init -backend-config="bucket=${{ secrets.RS_BUCKET_NAME }}" -backend-config="region=${{ secrets.RS_REGION }}" -backend-config="key=${{ secrets.RS_KEY_PATH_FILE }}"
+#        working-directory: ./terraform   
+#
+#      - name: Terraform Validate
+#        run: |
+#          echo "***Running Terraform Validate***"
+#          terraform validate
+#        working-directory: ./terraform 
+#
+#      - name: Terraform Plan
+#        run: |
+#          echo "***Running Terraform Plan***"
+#          terraform plan
+#        working-directory: ./terraform
+#
+#      - name: Terraform Apply
+#        run: |
+#          echo "***Running Terraform Apply***"
+#          terraform apply -auto-approve
+#        working-directory: ./terraform
         
   build_app:
-    needs: terraform_deploy
+#    needs: terraform_deploy
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -82,6 +82,6 @@ jobs:
           cd ./terraform && export ECR_REPOSITORY=$(terraform output ecr_repo_url)
           cd .. && docker build -t aws_ec2_flask_api . --build-arg ACCESS_KEY=${{ secrets.AWS_ACCESS_KEY_APP }} --build-arg SECRET_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY_APP }}
           echo $ECR_REPOSITORY
-          docker tag aws_ec2_flask_api:latest $ECR_REPOSITORY:latest
-          docker push $ECR_REPOSITORY:latest  
+ #         docker tag aws_ec2_flask_api:latest $ECR_REPOSITORY:latest
+ #         docker push $ECR_REPOSITORY:latest  
       
