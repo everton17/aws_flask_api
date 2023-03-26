@@ -74,7 +74,7 @@ jobs:
         uses: aws-actions/amazon-ecr-login@v1
         
       - name: Set Environment Variables
-        run: echo "ECR_REPOSITORY=$(terraform output ecr_repo_url | tr -d '\"')" >> $GITHUB_ENV
+        run: $(terraform output ecr_repo_url | tr -d '\"')" #>> $GITHUB_ENV
       
       - name: Print Environment Variable
         run: |
