@@ -66,7 +66,7 @@ jobs:
       - name: Terraform Init
         run: |
           echo "***Running Terraform Init***"
-          terraform init -backend-config="bucket=${{ secrets.RS_BUCKET_NAME }}" -backend-config="region=${{ secrets.RS_REGION }}" -backend-config="key=${{ secrets.RS_KEY_PATH_FILE }}"
+          terraform init -backend-config="bucket=${{ secrets.RS_BUCKET_NAME }}" -backend-config="region=us-east-2" -backend-config="key=${{ secrets.RS_KEY_PATH_FILE }}"
         working-directory: ./terraform
         
       - name: Login to Amazon ECR
