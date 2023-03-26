@@ -81,7 +81,9 @@ jobs:
         run: |
           cd ./terraform && export ECR_REPOSITORY=$(terraform output ecr_repo_url)
           cd .. && docker build -t aws_ec2_flask_api . --build-arg ACCESS_KEY=${{ secrets.AWS_ACCESS_KEY_APP }} --build-arg SECRET_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY_APP }}
+          echo Abaixo estará a variavel
           echo $ECR_REPOSITORY
+          echo Acima foi a variavel
  #         docker tag aws_ec2_flask_api:latest $ECR_REPOSITORY:latest
  #         docker push $ECR_REPOSITORY:latest  
       
