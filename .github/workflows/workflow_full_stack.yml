@@ -79,9 +79,9 @@ jobs:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           IMAGE_TAG: ${{ github.sha }}
         run: |
-           cd ./terraform && echo $(terraform output ecr_repo_url) > file
-           echo vamos ler o arquivo
-           cat file           
+           cd ./terraform && export ECR_REPOSITORY=$(terraform output ecr_repo_url | sed 's/^.*"\(.*\)".*$/\1/')
+           echo vamos ler a variavel
+           echo $ECR_REPOSITORY         
 #          cd .. && docker build -t aws_ec2_flask_api . --build-arg ACCESS_KEY=${{ secrets.AWS_ACCESS_KEY_APP }} --build-arg SECRET_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY_APP }}
 #          docker tag aws_ec2_flask_api:latest $ECR_REPOSITORY:latest
 #          docker push $ECR_REPOSITORY:latest  
