@@ -74,7 +74,7 @@ jobs:
         uses: aws-actions/amazon-ecr-login@v1
         
       - name: Set Environment Variables
-        run: echo terraform output ecr_repo_url | tr -d '\"' >> file && cat file
+        run: terraform output ecr_repo_url | tr -d '\"' >> file && cat file
       
 #      - name: Print Environment Variable
 #        run: |
