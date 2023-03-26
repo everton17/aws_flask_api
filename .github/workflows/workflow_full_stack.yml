@@ -79,7 +79,7 @@ jobs:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           IMAGE_TAG: ${{ github.sha }}
         run: |
-           cd ./terraform && export ECR_REPOSITORY=$(terraform output ecr_repo_url | sed 's/^.*"\(.*\)".*$/\1/')
+           cd ./terraform && echo "::set-env name=ECR_REPOSITORY::$(terraform output ecr_repo_url)"
            echo vamos ler a variavel
            echo $ECR_REPOSITORY         
 #          cd .. && docker build -t aws_ec2_flask_api . --build-arg ACCESS_KEY=${{ secrets.AWS_ACCESS_KEY_APP }} --build-arg SECRET_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY_APP }}
