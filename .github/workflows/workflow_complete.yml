@@ -1,4 +1,4 @@
-name: Deploy Full Stack Application
+name: Deploy Full - Infrastructure and Application
 
 on:
   workflow_dispatch:
