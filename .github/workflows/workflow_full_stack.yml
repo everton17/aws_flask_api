@@ -75,27 +75,17 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
         
-      - name: Test variable
-        run: cd ./terraform && echo "ECR_REPOSITORY=$(terraform output ecr_repo_url | tr -d \")" >> $GITHUB_ENV
+      - name: Terraform Output Export for GitHubEnv
+        run: echo "ECR_REPOSITORY=$(terraform output ecr_repo_url | tr -d \")" >> $GITHUB_ENV
+        working-directory: ./terraform
         
-      - name: Set Environment Variables
-        run: echo $ECR_REPOSITORY
-      
-      - name: Print Environment Variable
-        run: |
-          echo "ECR Repository: ${{ env.ECR_REPOSITORY }}"
-        
-#      - name: Build and Push Docker Image
-#        id: build-docker-image
-#        env:
-#          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-#          IMAGE_TAG: ${{ github.sha }}
-#        run: |
-#           echo "ECR_REPOSITORY=$(terraform output ecr_repo_url)" >> $GITHUB_ENV
-#           cd ./terraform
-#           echo vamos ler a variavel
-#           echo ${{ env.ECR_REPOSITORY }}       
-#          cd .. && docker build -t aws_ec2_flask_api . --build-arg ACCESS_KEY=${{ secrets.AWS_ACCESS_KEY_APP }} --build-arg SECRET_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY_APP }}
-#          docker tag aws_ec2_flask_api:latest $ECR_REPOSITORY:latest
-#          docker push $ECR_REPOSITORY:latest  
+      - name: Build and Push Docker Image
+        id: build-docker-image
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          IMAGE_TAG: ${{ github.sha }}
+        run: |      
+           docker build -t aws_ec2_flask_api . --build-arg ACCESS_KEY=${{ secrets.AWS_ACCESS_KEY_APP }} --build-arg SECRET_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY_APP }}
+           docker tag aws_ec2_flask_api:latest $ECR_REPOSITORY:latest
+           docker push $ECR_REPOSITORY:latest  
       
