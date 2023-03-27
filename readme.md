@@ -228,4 +228,4 @@ Toda a infraestrutura do projeto foi desenvolvida de forma declarativa através 
 
 Para a infraestrutura da nossa aplicação utlizamos uma série de recursos como: VPC, Internet Gateway, Nat Gateway, Security Groups, ECS, ALB, dentre outros. Para uma melhor entendimento segue um esboço da nossa arquitetura:
 
-![aws infra](https://i.imgur.com/8GUf5UV.png)
+<img src="https://i.imgur.com/8GUf5UV.png" width="100" height="100">
