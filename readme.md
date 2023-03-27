@@ -229,3 +229,59 @@ Toda a infraestrutura do projeto foi desenvolvida de forma declarativa através 
 Para a infraestrutura da nossa aplicação utlizamos uma série de recursos como: VPC, Internet Gateway, Nat Gateway, Security Groups, ECS, ALB, dentre outros. Para uma melhor entendimento segue um esboço da nossa arquitetura:
 
 <img src="https://i.imgur.com/8GUf5UV.png" width="720" height="800">
+
+Na arquitetura acima contamos com:
+- 1 VPC
+- 2 Subnets Publicas e 2 Subnets privadas
+- 1 internet Gateway
+- 2 Nat Gateways
+- 1 Routatable publica com saí da para o Internet Gateway
+- 2 Route tables privadas com saída para os 2 Nat Gateways
+- 1 Taget Group associado às duas Subnets privadas
+- 1 Cluster ECS Fargate que provisionará os containers da nossa aplicação nas duas zonas privada
+- 1 Application Load Balancer associado as 2 Subnets publicas, recebendo e enviando o trafego recebido para os containers associados ao Target Group.
+
+No codígo Terraform foi aplicado o conceito de módulos reútilizaveis. Tornando nosso codigo, como o proprio nome ja diz,  reutilizável e de fácil personalização, visto que cada recurso desejado é referenciado no arquivo **main.tf** e todos as informações e parâmetros que devem ser fornecidas pelo usuário ficam concentradas em um unico arquivo chamado **variables.tf**.
+
+Caso queira entender a estrutura e organização dos templates Terraform, segue a estrutura:
+
+```bash
+.
+├── main.tf
+├── modules
+│   ├── alb_module
+│   │   ├── alb.tf
+│   │   ├── locals.tf
+│   │   ├── outputs.tf
+│   │   └── variables.tf
+│   ├── ecr_module
+│   │   ├── ecr.tf
+│   │   ├── locals.tf
+│   │   ├── outputs.tf
+│   │   └── variables.tf
+│   ├── ecs_module
+│   │   ├── auto_scale.tf
+│   │   ├── ecs.tf
+│   │   ├── iam.tf
+│   │   ├── locals.tf
+│   │   ├── outputs.tf
+│   │   ├── target-group.tf
+│   │   └── variables.tf
+│   ├── security_groups_module
+│   │   ├── locals.tf
+│   │   ├── outputs.tf
+│   │   ├── security-groups.tf
+│   │   └── variables.tf
+│   └── vpc_module
+│       ├── locals.tf
+│       ├── outputs.tf
+│       ├── variables.tf
+│       └── vpc.tf
+├── outputs.tf
+├── template
+│   └── app.json.tpl
+├── terraform.tfstate
+├── terraform.tfstate.backup
+└── variables.tf
+```
+
