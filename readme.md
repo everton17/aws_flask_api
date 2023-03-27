@@ -213,7 +213,7 @@ Nossa aplicação consiste em uma api que que se comunica com o serviço AWS EC2
 #### Modifica o tipo da instancia EC2
 
 ```http
-  POST /ec2_reboot
+  POST /ec2_instance_type_modify
 ```
 
 | Parâmetro       | Tipo       | Descrição                                           |
