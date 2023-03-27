@@ -76,14 +76,10 @@ jobs:
         uses: aws-actions/amazon-ecr-login@v1
         
       - name: Test variable
-        run: cd ./terraform && ECR_REPOSITORY=$(terraform output ecr_repo_url) && echo $ECR_REPOSITORY
-        
-      - name: Terraform Output
-        id: output
-        run: cd ./terraform && terraform output ecr_repo_url
+        run: cd ./terraform && ECR_REPOSITORY=$(terraform output ecr_repo_url | tr -d \") && echo $ECR_REPOSITORY
         
       - name: Set Environment Variables
-        run: echo "${{ steps.output.outputs.ecr_repo_url }}"
+        run: echo $ECR_REPOSITORY
       
       - name: Print Environment Variable
         run: |
