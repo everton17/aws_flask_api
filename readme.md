@@ -222,4 +222,10 @@ Nossa aplicação consiste em uma api que que se comunica com o serviço AWS EC2
 | `instance_id`   | `string`   | **Obrigatório**. Id da Instacia que deseja reiniciar|
 | `instance_type` | `string`   | **Obrigatório**. Novo tipo de instancia desejado    |
 
+## Terraform
 
+Toda a infraestrutura do projeto foi desenvolvida de forma declarativa através do Terraform para assim podermos usufruir de alguns dos benefícios do IaC, como versionamento, automação, performance, idempotencia, ...
+
+Para a infraestrutura da nossa aplicação utlizamos uma série de recursos como: VPC, Internet Gateway, Nat Gateway, Security Groups, ECS, ALB, dentre outros. Para uma melhor entendimento segue um esboço da nossa arquitetura:
+
+![aws infra](https://i.imgur.com/8GUf5UV.png)
