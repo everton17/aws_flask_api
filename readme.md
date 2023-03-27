@@ -169,7 +169,7 @@ Nossa aplicação consiste em uma api que que se comunica com o serviço AWS EC2
 
 #### Retorna todas as Instancias EC2
 
-```http
+```bash
   GET /ec2_list
 ```
 
@@ -179,7 +179,7 @@ Nossa aplicação consiste em uma api que que se comunica com o serviço AWS EC2
 
 #### Desliga uma instancia EC2
 
-```http
+```bash
   POST /ec2_stop
 ```
 
@@ -190,7 +190,7 @@ Nossa aplicação consiste em uma api que que se comunica com o serviço AWS EC2
 
 #### Liga uma instancia EC2
 
-```http
+```bash
   POST /ec2_start
 ```
 
@@ -201,7 +201,7 @@ Nossa aplicação consiste em uma api que que se comunica com o serviço AWS EC2
 
 #### Reinicia uma instancia EC2
 
-```http
+```bash
   POST /ec2_reboot
 ```
 
@@ -212,7 +212,7 @@ Nossa aplicação consiste em uma api que que se comunica com o serviço AWS EC2
 
 #### Modifica o tipo da instancia EC2
 
-```http
+```bash
   POST /ec2_instance_type_modify
 ```
 
