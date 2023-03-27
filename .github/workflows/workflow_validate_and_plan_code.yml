@@ -1,0 +1,43 @@
+name: Deploy Full Stack Application
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+
+jobs:
+  terraform_deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_CI_CD }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY_CI_CD }}
+          aws-region: ${{ secrets.RS_REGION }}
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.3.5
+
+      - name: Terraform Init
+        run: |
+          echo "***Running Terraform Init***"
+          terraform init -backend-config="bucket=${{ secrets.RS_BUCKET_NAME }}" -backend-config="region=${{ secrets.RS_REGION }}" -backend-config="key=${{ secrets.RS_KEY_PATH_FILE }}"
+        working-directory: ./terraform   
+
+      - name: Terraform Validate
+        run: |
+          echo "***Running Terraform Validate***"
+          terraform validate
+        working-directory: ./terraform 
+
+      - name: Terraform Plan
+        run: |
+          echo "***Running Terraform Plan***"
+          terraform plan
+        working-directory: ./terraform
