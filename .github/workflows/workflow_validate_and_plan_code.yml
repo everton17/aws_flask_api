@@ -1,4 +1,4 @@
-name: Deploy Full Stack Application
+name: Validate and plan resources Terraform
 
 on:
   push:
