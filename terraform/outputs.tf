@@ -6,6 +6,10 @@ output "ecr_repo_url" {
   value = module.ecr.ecr_repository_url
 }
 
-output "ecr_repo_code" {
-  value = module.ecr.ecr_repo_path_login
+output "ecs_cluster_name" {
+  value = module.ecs.ecs_cluster_name
+}
+
+output "ecs_service_name" {
+  value = module.ecs.ecs_service_name
 }
