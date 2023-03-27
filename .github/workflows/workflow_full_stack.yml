@@ -79,6 +79,9 @@ jobs:
         run: |
           echo "***Exportion Variables***"
           echo "ECR_REPOSITORY=$(terraform output ecr_repo_url | tr -d \")" >> $GITHUB_ENV
+          echo "ECS_CLUSTER_NAME=$(terraform output ecs_cluster_name | tr -d \")" >> $GITHUB_ENV
+          echo "ECS_SERVICE_NAME=$(terraform output ecs_service_name | tr -d \")" >> $GITHUB_ENV
+          echo "APP_DNS_ACCESS=$(terraform output abl_dns | tr -d \")" >> $GITHUB_ENV
         working-directory: ./terraform
         
       - name: Build and Push Docker Image
@@ -90,5 +93,20 @@ jobs:
            echo "***Build and Push Docker Image***"
            docker build -t aws_ec2_flask_api . --build-arg ACCESS_KEY=${{ secrets.AWS_ACCESS_KEY_APP }} --build-arg SECRET_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY_APP }}
            docker tag aws_ec2_flask_api:latest $ECR_REPOSITORY:latest
-           docker push $ECR_REPOSITORY:latest  
+           docker push $ECR_REPOSITORY:latest
+
+      - name: Deploy ECS
+        id: deploy-ecs
+        run: |
+          echo "***Running Deploy ECS***"
+          AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_CI_CD}} AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY_CI_CD }} AWS_DEFAULT_REGION=${{ secrets.RS_REGION }} aws ecs update-service --cluster $ECS_CLUSTER_NAME --service $ECS_SERVICE_NAME --force-new-deployment --region ${{ secrets.RS_REGION }}
+          sleep 30
+
+      - name: DNS ENDPOINT
+        id: dns-endpoint
+        run: |
+          echo "***API Endpoint to acess***"
+          echo $APP_DNS_ACCESS
+
+
       
