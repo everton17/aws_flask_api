@@ -1,7 +1,7 @@
 
 # AWS EC2 Manage Instances API
 
-Este projeto foi desenvolvido como objeto de estudos e aplicação de uma série de conhecimentos, tecnologias e habilidades voltados para o ecossistema DevOps. Trabalhando alguns tópicos como: Programção, Cloud, IaC, Containers e CI/CD.
+Este projeto foi desenvolvido como objeto de estudos e aplicação de uma série de conhecimentos, tecnologias e habilidades voltados para o ecossistema DevOps. Trabalhando alguns tópicos como: Programação, Cloud, IaC, Containers e CI/CD.
 
 O core do projeto se trata de uma aplicação que possibilita interações simples com serviço AWS EC2 via requisições HTTP, como por exemplo Listar instâncias e realizar algumas ações com as mesmas como: ligar, desligar, reiniciar e modificar a classe das instâncias.
 
