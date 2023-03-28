@@ -3,7 +3,7 @@
 
 Este projeto foi desenvolvido como objeto de estudos e aplicação de uma série de conhecimentos, tecnologias e habilidades voltados para o ecossistema DevOps. Trabalhando alguns tópicos como: Programção, Cloud, IaC, Containers e CI/CD.
 
-O core do projeto se trata de uma aplicação que possibilita interações simples com serviço AWS EC2 via requisições HTTP, como por exemplo Listar instancias e realizar algumas ações com as mesmas como: ligar, desligar, reiniciar e modificar a classe das instancias.
+O core do projeto se trata de uma aplicação que possibilita interações simples com serviço AWS EC2 via requisições HTTP, como por exemplo Listar instâncias e realizar algumas ações com as mesmas como: ligar, desligar, reiniciar e modificar a classe das instâncias.
 
 
 ## 🛠 Stack utilizada
@@ -17,22 +17,22 @@ O core do projeto se trata de uma aplicação que possibilita interações simpl
 
 ## ✅ API - Pré requisitos
 
-Para utilização da aplicação precisaremos de alguns itens instados no nosso ambiente:
+Para utilização da aplicação precisaremos de alguns itens instalados no nosso ambiente:
 
-- Uma conta AWS, usuário e credenciais com permissçõees ao serviço EC2
+- Uma conta AWS, usuário e credenciais com permissões ao serviço EC2
 - Python 3.10
 - AWS Cli
 
 
 ## 🔗 Links
 
-Segue abaixo alguns links que pode ajudar na configuração do ambiente
+Segue abaixo alguns links que podem ajudar na configuração do ambiente
 
 [Instalação do Python e AWS Cli no Windows](https://docs.aws.amazon.com/pt_br/elasticbeanstalk/latest/dg/eb-cli3-install-windows.html)
 
 [Instalação do Python e AWS Cli no Linux](https://docs.aws.amazon.com/pt_br/elasticbeanstalk/latest/dg/eb-cli3-install-linux.html)
 
-[Criando um usário AWS no console AWS](https://docs.aws.amazon.com/pt_br/IAM/latest/UserGuide/id_users_create.html#id_users_create_console)
+[Criando um usuário AWS no console AWS](https://docs.aws.amazon.com/pt_br/IAM/latest/UserGuide/id_users_create.html#id_users_create_console)
 
 [Configurando credenciais de usuário no AWS Cli](https://docs.aws.amazon.com/pt_br/cli/latest/userguide/cli-configure-files.html)
 
@@ -83,7 +83,7 @@ Execute a aplicação
 
 Após a configuração do ambiente e das credenciais de usuário junto aos AWS Cli basta seguir os passos abaixo:
 
-**Obs: para esta execução você necessariamente do docker intalado na sua maquina**
+**Obs: Para esta execução você precisará ter o Docker instalado na sua máquina**
 
 [Instalação do Docker](https://docs.docker.com/get-docker/)
 
@@ -124,7 +124,7 @@ Para execução da nossa aplicação na AWS o projeto contempla uma Stack Terraf
 
 **Obs: para esta execução você precisará fazer um fork do projeto e algumas configurações no seu GitHub e na sua conta AWS**
 
-Para que possamos deployar nossa stack terraform na AWS precisaremos cumprir alguns pré requisitos:
+Para que possamos deployar nossa stack terraform na AWS precisaremos cumprir alguns pré-requisitos:
 
 **AWS**
 -
@@ -139,12 +139,12 @@ Para que possamos deployar nossa stack terraform na AWS precisaremos cumprir alg
 **GitHub**
 -
 Após feito o Fork, acesse as configurações do repositório em: **Settings > Secrets and variables > Actions** para que possamos criar nossas Secrets.
-- Criaremos sete secrets ao todo, seram elas:
-    - AWS_ACCESS_KEY_APP -> Recebera a Acess Key do usuário que criamos para nossa aplicação.
-    - AWS_SECRET_ACCESS_KEY_APP -> Recebera a Secret Key do usuário que criamos para nossa aplicação.
-    - AWS_ACCESS_KEY_CI_CD -> Recebera a Acess Key do usuário que criamos para o Terraform.
-    - AWS_SECRET_ACCESS_KEY_CI_CD -> Recebera a Secret Key do usuário que criamos para o Terraform.
-    - RS_BUCKET_NAME -> Recebera o nome do bucket que criamos para armazenar o Remote State do Terraform
+- Criaremos sete secrets ao todo, serão elas:
+    - AWS_ACCESS_KEY_APP -> Receberá a Acess Key do usuário que criamos para nossa aplicação.
+    - AWS_SECRET_ACCESS_KEY_APP -> Receberá a Secret Key do usuário que criamos para nossa aplicação.
+    - AWS_ACCESS_KEY_CI_CD -> Receberá a Acess Key do usuário que criamos para o Terraform.
+    - AWS_SECRET_ACCESS_KEY_CI_CD -> Receberá a Secret Key do usuário que criamos para o Terraform.
+    - RS_BUCKET_NAME -> Receberá o nome do bucket que criamos para armazenar o Remote State do Terraform
     - RS_KEY_PATH_FILE -> Receberá o caminho seguido do nome do arquivo de state que será criado pelo Terraform. Ex: aws_infra/terraform.tfstate
     - RS_REGION -> Receberá a região da AWS onde o bucket foi criado
 Detalhados os conteúdos cada secret deve conter, basta cria-las nas configurações do seu repositório GitHub
@@ -163,11 +163,11 @@ Quando não for mais utilizar a aplicação, não se esqueça de excluir os recu
 
 ## 🤓  Conhecendo a aplicação
 
-Nossa aplicação consiste em uma api que que se comunica com o serviço AWS EC2 e interagem com as instancias ali provisionadas por meio de requisições HTTP. Vamos conhecer mais de suas funcionalidades e como utiliza-las.
+Nossa aplicação consiste em uma api que que se comunica com o serviço AWS EC2 e interagem com as instâncias ali provisionadas por meio de requisições HTTP. Vamos conhecer mais de suas funcionalidades e como utilizá-las.
 
 ## 📑 Documentação da API
 
-#### Retorna todas as Instancias EC2
+#### Retorna todas as Instâncias EC2
 
 ```bash
   GET /ec2_list
@@ -177,7 +177,7 @@ Nossa aplicação consiste em uma api que que se comunica com o serviço AWS EC2
 | :----------     | :--------- | :---------------------------------------------------|
 | `region`        | `string`   | **Obrigatório**. Região AWS que deseja interagir    |
 
-#### Desliga uma instancia EC2
+#### Desliga uma instância EC2
 
 ```bash
   POST /ec2_stop
@@ -188,7 +188,7 @@ Nossa aplicação consiste em uma api que que se comunica com o serviço AWS EC2
 | `region`        | `string`   | **Obrigatório**. Região AWS que deseja interagir    |
 | `instance_id`   | `string`   | **Obrigatório**. Id da Instacia que deseja desligar |
 
-#### Liga uma instancia EC2
+#### Liga uma instância EC2
 
 ```bash
   POST /ec2_start
@@ -199,7 +199,7 @@ Nossa aplicação consiste em uma api que que se comunica com o serviço AWS EC2
 | `region`        | `string`   | **Obrigatório**. Região AWS que deseja interagir    |
 | `instance_id`   | `string`   | **Obrigatório**. Id da Instacia que deseja ligar    |
 
-#### Reinicia uma instancia EC2
+#### Reinicia uma instância EC2
 
 ```bash
   POST /ec2_reboot
@@ -210,7 +210,7 @@ Nossa aplicação consiste em uma api que que se comunica com o serviço AWS EC2
 | `region`        | `string`   | **Obrigatório**. Região AWS que deseja interagir    |
 | `instance_id`   | `string`   | **Obrigatório**. Id da Instacia que deseja reiniciar|
 
-#### Modifica o tipo da instancia EC2
+#### Modifica o tipo da instância EC2
 
 ```bash
   POST /ec2_instance_type_modify
@@ -226,22 +226,22 @@ Nossa aplicação consiste em uma api que que se comunica com o serviço AWS EC2
 
 Toda a infraestrutura do projeto foi desenvolvida de forma declarativa através do Terraform para assim podermos usufruir de alguns dos benefícios do IaC, como versionamento, automação, performance, idempotencia, ...
 
-Para a infraestrutura da nossa aplicação utlizamos uma série de recursos como: VPC, Internet Gateway, Nat Gateway, Security Groups, ECS, ALB, dentre outros. Para uma melhor entendimento segue um esboço da nossa arquitetura:
+Para a infraestrutura da nossa aplicação, utlizamos uma série de recursos como: VPC, Internet Gateway, Nat Gateway, Security Groups, ECS, ALB, dentre outros. Para o melhor entendimento, segue um esboço da nossa arquitetura:
 
 <img src="https://i.imgur.com/8GUf5UV.png" width="720" height="800">
 
 Na arquitetura acima contamos com:
 - 1 VPC
-- 2 Subnets Publicas e 2 Subnets privadas
+- 2 Subnets Públicas e 2 Subnets privadas
 - 1 internet Gateway
 - 2 Nat Gateways
-- 1 Routatable publica com saí da para o Internet Gateway
+- 1 Routatable pública com saída para o Internet Gateway
 - 2 Route tables privadas com saída para os 2 Nat Gateways
 - 1 Taget Group associado às duas Subnets privadas
-- 1 Cluster ECS Fargate que provisionará os containers da nossa aplicação nas duas zonas privada
-- 1 Application Load Balancer associado as 2 Subnets publicas, recebendo e enviando o trafego recebido para os containers associados ao Target Group.
+- 1 Cluster ECS Fargate que provisionará os containers da nossa aplicação nas duas zonas privadas
+- 1 Application Load Balancer associado as 2 Subnets públicas, recebendo e enviando o tráfego recebido para os containers associados ao Target Group.
 
-No codígo Terraform foi aplicado o conceito de módulos reútilizaveis. Tornando nosso codigo, como o proprio nome ja diz,  reutilizável e de fácil personalização, visto que cada recurso desejado é referenciado no arquivo **main.tf** e todos as informações e parâmetros que devem ser fornecidas pelo usuário ficam concentradas em um unico arquivo chamado **variables.tf**.
+No códígo Terraform foi aplicado o conceito de módulos reútilizaveis. Tornando nosso codigo, como o próprio nome já diz,  reútilizável e de fácil personalização, visto que cada recurso desejado é referenciado no arquivo **main.tf** e todos as informações e parâmetros que devem ser fornecidas pelo usuário ficam concentradas em um único arquivo chamado **variables.tf**.
 
 Caso queira entender a estrutura e organização dos templates Terraform, segue a estrutura:
 
@@ -287,9 +287,9 @@ Caso queira entender a estrutura e organização dos templates Terraform, segue 
 
 ## 🏗 GitHub Actions
 
-Para a automação do nosso processo de Deploy tanto da Infraestrutura quanto da aplicação utilizamos o GitHub Actions. Através de seus Workflows de Integração e Entrega Contínua foi possivel integrar elementos chaves entre os dois procedimentos de deploy. Visto que para fazer o deploy da aplicação necessitamos que primeiro sejam criado os componentes de infraestrutura. 
+Para a automação do nosso processo de Deploy tanto da Infraestrutura quanto da aplicação, utilizaremos o GitHub Actions. Através de seus Workflows de Integração e Entrega Contínua foi possível integrar elementos chaves entre os dois procedimentos de deploy. Visto que para fazer o deploy da aplicação, necessitamos que primeiro sejam criado os componentes de infraestrutura. 
 
-Dessa forma o nosso primeiro workflow em questão. Declarado no arquivo **.github/workflows/workflow_complete.yml**. Cria toda a nossa infraestrutura na AWS e exporta como variável de ambiente informações importantes para o deploy da aplicação como: a url do repositório ECR para que bossamos fazer o push da imagem docker após o processo de build, os nomes do cluster ECS e do service para que possamos enviar a ordem de novo deploy ao Cluster ECS.
+Dessa forma o nosso primeiro workflow em questão. Declarado no arquivo **.github/workflows/workflow_complete.yml**. Cria toda a nossa infraestrutura na AWS e exporta como variável de ambiente informações importantes para o deploy da aplicação como: a url do repositório ECR para que possamos fazer o push da imagem docker após o processo de build, os nomes do cluster ECS e do service para que possamos enviar a ordem de novo deploy ao Cluster ECS.
 
 Assim o Job que faz o build da aplicação consegue herdar do Job do Terraform as informações que precisa para pazer o Deploy da aplicação no Cluster ECS.
 
