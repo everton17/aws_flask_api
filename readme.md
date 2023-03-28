@@ -222,7 +222,7 @@ Nossa aplicação consiste em uma api que que se comunica com o serviço AWS EC2
 | `instance_id`   | `string`   | **Obrigatório**. Id da Instacia que deseja reiniciar|
 | `instance_type` | `string`   | **Obrigatório**. Novo tipo de instancia desejado    |
 
-## Terraform
+## ⚙️ Terraform
 
 Toda a infraestrutura do projeto foi desenvolvida de forma declarativa através do Terraform para assim podermos usufruir de alguns dos benefícios do IaC, como versionamento, automação, performance, idempotencia, ...
 
@@ -285,7 +285,7 @@ Caso queira entender a estrutura e organização dos templates Terraform, segue 
 └── variables.tf
 ```
 
-## GitHub Actions
+## 🏗 GitHub Actions
 
 Para a automação do nosso processo de Deploy tanto da Infraestrutura quanto da aplicação utilizamos o GitHub Actions. Através de seus Workflows de Integração e Entrega Contínua foi possivel integrar elementos chaves entre os dois procedimentos de deploy. Visto que para fazer o deploy da aplicação necessitamos que primeiro sejam criado os componentes de infraestrutura. 
 
