@@ -1,7 +1,7 @@
 
 # AWS EC2 Manage Instances API
 
-Este projeto foi desenvolvido como objeto de estudos e aplicação de uma série de conhecimentos, tecnologias e habilidades voltados para o ecossistema DevOps. Trabalhando alguns tópicos como: Programção, Cloud, IaC, Containers e CI/CD.
+Este projeto foi desenvolvido como objeto de estudos e aplicação de uma série de conhecimentos, tecnologias e habilidades voltados para o ecossistema DevOps. Trabalhando alguns tópicos como: Programação, Cloud, IaC, Containers e CI/CD.
 
 O core do projeto se trata de uma aplicação que possibilita interações simples com serviço AWS EC2 via requisições HTTP, como por exemplo Listar instâncias e realizar algumas ações com as mesmas como: ligar, desligar, reiniciar e modificar a classe das instâncias.
 
@@ -151,7 +151,7 @@ Detalhados os conteúdos cada secret deve conter, basta cria-las nas configuraç
 
 **Terraform**
 -
-Caso queira personalisar as configurações de infraestrutura , basta fazer as alterações no seguinte arquivo **./terraform/variables.tf**. Todas os parâmetros de configurações da nossa Stack Terraform se encontram no mesmo. Recomendo que você dê uma atenção especial a este arquivo e suas configurações antes de realizar o deploy, para que tome conhecimento de todos os recursos que serão provisionados e possa fazer sua estimativa de custos afim de estar ciente de todos custos que serão gerados por parte do Cloud Provider.
+Caso queira personalisar as configurações de infraestrutura , basta fazer as alterações no seguinte arquivo **./terraform/variables.tf**. Todas os parâmetros de configurações da nossa Stack Terraform se encontram no mesmo. Recomendo que você dê uma atenção especial a este arquivo e suas configurações antes de realizar o deploy, para que tome conhecimento de todos os recursos que serão provisionados e possa fazer sua estimativa de custos a fim de estar ciente de todos custos que serão gerados por parte do Cloud Provider.
 
 **Executando a Pipeline de Deploy**
 -
@@ -159,7 +159,7 @@ Agora vamos Finalmente fazer o deploy de toda nossa Stack na AWS. Para isso aces
 
 **Executando a Pipeline de Destroy**
 -
-Quando não for mais utilizar a aplicação, não se esqueça de excluir os recusros criados na AWS a fim de evitar cobranças indesejadas. Para isso acesse a Actions do seu repositório e execute o seguinte Workflow: **Workflow Destroy Infrastructure** clicando em **Run Workflow**.
+Quando não for mais utilizar a aplicação, não se esqueça de excluir os recursos criados na AWS a fim de evitar cobranças indesejadas. Para isso acesse a Actions do seu repositório e execute o seguinte Workflow: **Workflow Destroy Infrastructure** clicando em **Run Workflow**.
 
 ## 🤓  Conhecendo a aplicação
 
@@ -241,7 +241,7 @@ Na arquitetura acima contamos com:
 - 1 Cluster ECS Fargate que provisionará os containers da nossa aplicação nas duas zonas privadas
 - 1 Application Load Balancer associado as 2 Subnets públicas, recebendo e enviando o tráfego recebido para os containers associados ao Target Group.
 
-No códígo Terraform foi aplicado o conceito de módulos reútilizaveis. Tornando nosso codigo, como o próprio nome já diz,  reútilizável e de fácil personalização, visto que cada recurso desejado é referenciado no arquivo **main.tf** e todos as informações e parâmetros que devem ser fornecidas pelo usuário ficam concentradas em um único arquivo chamado **variables.tf**.
+No códígo Terraform foi aplicado o conceito de módulos reútilizaveis. Tornando nosso código, como o próprio nome já diz,  reútilizável e de fácil personalização, visto que cada recurso desejado é referenciado no arquivo **main.tf** e todos as informações e parâmetros que devem ser fornecidas pelo usuário ficam concentradas em um único arquivo chamado **variables.tf**.
 
 Caso queira entender a estrutura e organização dos templates Terraform, segue a estrutura:
 
@@ -287,13 +287,13 @@ Caso queira entender a estrutura e organização dos templates Terraform, segue 
 
 ## 🏗 GitHub Actions
 
-Para a automação do nosso processo de Deploy tanto da Infraestrutura quanto da aplicação, utilizaremos o GitHub Actions. Através de seus Workflows de Integração e Entrega Contínua foi possível integrar elementos chaves entre os dois procedimentos de deploy. Visto que para fazer o deploy da aplicação, necessitamos que primeiro sejam criado os componentes de infraestrutura. 
+Para a automação do nosso processo de Deploy tanto da Infraestrutura quanto da aplicação, utilizaremos o GitHub Actions. Através de seus Workflows de Integração e Entrega Contínua foi possível integrar elementos chaves entre os dois procedimentos de deploy. Visto que para fazer o deploy da aplicação, necessitamos que primeiro sejam criados os componentes de infraestrutura. 
 
 Dessa forma o nosso primeiro workflow em questão. Declarado no arquivo **.github/workflows/workflow_complete.yml**. Cria toda a nossa infraestrutura na AWS e exporta como variável de ambiente informações importantes para o deploy da aplicação como: a url do repositório ECR para que possamos fazer o push da imagem docker após o processo de build, os nomes do cluster ECS e do service para que possamos enviar a ordem de novo deploy ao Cluster ECS.
 
 Assim o Job que faz o build da aplicação consegue herdar do Job do Terraform as informações que precisa para pazer o Deploy da aplicação no Cluster ECS.
 
-O nosso segundo workflow declarado no arquivo **.github/workflows/workflow_validate_and_plan_code.yml** tem como objetivo Validar a intregridade do codigo terraform a cada novo commit enviado ao reposítório. Dessa forma pode-se ver se o codigo Terraform não possui nenhum erro de syntax e podemos conferir todos os recurso que serão ou não criados em caso de execução do Workflow que faz o Deploy completo da Stack.
+O nosso segundo workflow declarado no arquivo **.github/workflows/workflow_validate_and_plan_code.yml** tem como objetivo Validar a intregridade do código terraform a cada novo commit enviado ao reposítório. Dessa forma pode-se ver se o codigo Terraform não possui nenhum erro de syntax e podemos conferir todos os recurso que serão ou não criados em caso de execução do Workflow que faz o Deploy completo da Stack.
 
 Por fim mas não menos importante temos o nosso Workflow de destroy, declarado no arquvo **.github/workflows/workflow_destroy.yml**. Que como o proprio nome sugere, ao ser executado, destroi todos os recursos provisionados na Cloud da AWS.
 
