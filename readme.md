@@ -183,10 +183,10 @@ Nossa aplicação consiste em uma api que que se comunica com o serviço AWS EC2
   POST /ec2_stop
 ```
 
-| Parâmetro       | Tipo       | Descrição                                           |
-| :----------     | :--------- | :---------------------------------------------------|
-| `region`        | `string`   | **Obrigatório**. Região AWS que deseja interagir    |
-| `instance_id`   | `string`   | **Obrigatório**. Id da Instacia que deseja desligar |
+| Parâmetro       | Tipo       | Descrição                                            |
+| :----------     | :--------- | :----------------------------------------------------|
+| `region`        | `string`   | **Obrigatório**. Região AWS que deseja interagir     |
+| `instance_id`   | `string`   | **Obrigatório**. Id da Instância que deseja desligar |
 
 #### Liga uma instância EC2
 
@@ -194,10 +194,10 @@ Nossa aplicação consiste em uma api que que se comunica com o serviço AWS EC2
   POST /ec2_start
 ```
 
-| Parâmetro       | Tipo       | Descrição                                           |
-| :----------     | :--------- | :---------------------------------------------------|
-| `region`        | `string`   | **Obrigatório**. Região AWS que deseja interagir    |
-| `instance_id`   | `string`   | **Obrigatório**. Id da Instacia que deseja ligar    |
+| Parâmetro       | Tipo       | Descrição                                            |
+| :----------     | :--------- | :----------------------------------------------------|
+| `region`        | `string`   | **Obrigatório**. Região AWS que deseja interagir     |
+| `instance_id`   | `string`   | **Obrigatório**. Id da Instância que deseja ligar    |
 
 #### Reinicia uma instância EC2
 
@@ -205,10 +205,10 @@ Nossa aplicação consiste em uma api que que se comunica com o serviço AWS EC2
   POST /ec2_reboot
 ```
 
-| Parâmetro       | Tipo       | Descrição                                           |
-| :----------     | :--------- | :---------------------------------------------------|
-| `region`        | `string`   | **Obrigatório**. Região AWS que deseja interagir    |
-| `instance_id`   | `string`   | **Obrigatório**. Id da Instacia que deseja reiniciar|
+| Parâmetro       | Tipo       | Descrição                                            |
+| :----------     | :--------- | :----------------------------------------------------|
+| `region`        | `string`   | **Obrigatório**. Região AWS que deseja interagir     |
+| `instance_id`   | `string`   | **Obrigatório**. Id da Instância que deseja reiniciar|
 
 #### Modifica o tipo da instância EC2
 
@@ -216,11 +216,11 @@ Nossa aplicação consiste em uma api que que se comunica com o serviço AWS EC2
   POST /ec2_instance_type_modify
 ```
 
-| Parâmetro       | Tipo       | Descrição                                           |
-| :----------     | :--------- | :---------------------------------------------------|
-| `region`        | `string`   | **Obrigatório**. Região AWS que deseja interagir    |
-| `instance_id`   | `string`   | **Obrigatório**. Id da Instacia que deseja reiniciar|
-| `instance_type` | `string`   | **Obrigatório**. Novo tipo de instancia desejado    |
+| Parâmetro       | Tipo       | Descrição                                            |
+| :----------     | :--------- | :----------------------------------------------------|
+| `region`        | `string`   | **Obrigatório**. Região AWS que deseja interagir     |
+| `instance_id`   | `string`   | **Obrigatório**. Id da Instância que deseja reiniciar|
+| `instance_type` | `string`   | **Obrigatório**. Novo tipo de instância desejado     |
 
 ## ⚙️ Terraform
 
