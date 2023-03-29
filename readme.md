@@ -100,12 +100,6 @@ Entre no diretório do projeto
   cd aws_flask_api
 ```
 
-Entre no diretório do projeto
-
-```bash
-  cd aws_flask_api
-```
-
 Execute o docker build referenciando as credenciais AWS como build-args
 
 ```bash
@@ -233,15 +227,15 @@ Para a infraestrutura da nossa aplicação, utlizamos uma série de recursos com
 Na arquitetura acima contamos com:
 - 1 VPC
 - 2 Subnets Públicas e 2 Subnets privadas
-- 1 internet Gateway
+- 1 Internet Gateway
 - 2 Nat Gateways
-- 1 Routatable pública com saída para o Internet Gateway
+- 1 Route table pública com saída para o Internet Gateway
 - 2 Route tables privadas com saída para os 2 Nat Gateways
-- 1 Taget Group associado às duas Subnets privadas
+- 1 Target Group associado às duas Subnets privadas
 - 1 Cluster ECS Fargate que provisionará os containers da nossa aplicação nas duas zonas privadas
 - 1 Application Load Balancer associado as 2 Subnets públicas, recebendo e enviando o tráfego recebido para os containers associados ao Target Group.
 
-No códígo Terraform foi aplicado o conceito de módulos reútilizaveis. Tornando nosso código, como o próprio nome já diz,  reútilizável e de fácil personalização, visto que cada recurso desejado é referenciado no arquivo **main.tf** e todos as informações e parâmetros que devem ser fornecidas pelo usuário ficam concentradas em um único arquivo chamado **variables.tf**.
+No código Terraform foi aplicado o conceito de módulos reutilizáveis. Tornando nosso código, como o próprio nome já diz,  reutilizável e de fácil personalização, visto que cada recurso desejado é referenciado no arquivo **main.tf** e todos as informações e parâmetros que devem ser fornecidas pelo usuário ficam concentradas em um único arquivo chamado **variables.tf**.
 
 Caso queira entender a estrutura e organização dos templates Terraform, segue a estrutura:
 
