@@ -9,4 +9,4 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Trigger Push
-        run: echo este workflow foi disparado por um Push
+        run: echo este workflow foi disparado por um pull Request
