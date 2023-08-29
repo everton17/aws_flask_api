@@ -1,0 +1,12 @@
+name: Teste-push
+
+on:
+  push
+
+jobs:
+  teste-push:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Trigger Push
+        run: echo este workflow foi disparado por um Push
