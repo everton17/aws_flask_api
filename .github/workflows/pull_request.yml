@@ -1,7 +1,9 @@
 name: Teste-push
 
 on:
-  push
+  pull_request:
+    types:
+      - closed
 
 jobs:
   teste-push:
